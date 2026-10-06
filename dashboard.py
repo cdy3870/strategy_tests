@@ -235,7 +235,7 @@ if use_wf and folds:
         return f"color: {color}; font-weight: 700"
 
     st.dataframe(
-        tbl.style.applymap(_color_verdict, subset=["Verdict"]),
+        tbl.style.map(_color_verdict, subset=["Verdict"]),
         use_container_width=True, hide_index=True,
     )
 
@@ -443,7 +443,7 @@ def _color_net(val):
     return ""
 
 st.dataframe(
-    strat_df.style.applymap(_color_net, subset=["Net $"]),
+    strat_df.style.map(_color_net, subset=["Net $"]),
     use_container_width=True, hide_index=True,
 )
 
