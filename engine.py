@@ -28,7 +28,7 @@ def build_equity(strat_dfs: list[pd.DataFrame], date_index: pd.DatetimeIndex,
 
     raw = pd.Series([v for _, v in eq_pts], index=[d for d, _ in eq_pts])
     raw = raw[~raw.index.duplicated(keep="last")]
-    eq  = raw.reindex(date_index, method="ffill").fillna(method="bfill")
+    eq  = raw.reindex(date_index).ffill().bfill()
     tlog = pd.DataFrame(trade_log) if trade_log else pd.DataFrame(
         columns=["strat", "entry_date", "exit_date", "net_ret", "dollar_pnl", "r"])
     return eq, tlog
